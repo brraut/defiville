@@ -48,19 +48,30 @@ const FactoryModal=({isVisible, onClose})=> {
             </ul>
             <div className={checkContent('bond')}>
             Deposit BUSDC to bond BUSDC
-            </div>
-            <div className={checkContent('redeem')}>
-                Redeem
-            </div>
-            <div className={checkContent('nft')}>
-                NFT
-            </div>
-           
             <div className={css(styles.footer)}>
                 <button className={css(styles.densed)}>
                         Approve
                 </button>
             </div>
+            </div>
+            <div className={checkContent('redeem')}>
+                Redeem
+                <div className={css(styles.footer)}>
+                    <button className={css(styles.densed)}>
+                            Claim
+                    </button>
+                </div>
+            </div>
+            <div className={checkContent('nft')}>
+                NFT
+                <div className={css(styles.footer)}>
+                    <button className={css(styles.densed)}>
+                            Create new Action
+                    </button>
+                </div>
+            </div>
+           
+           
         </Modal>            
     )
 }
@@ -117,7 +128,6 @@ const Styles = () => {
             cursor: 'pointer'
           },
           tabContent:{
-            paddingBottom: '15px',
             display: 'none'
           },
           activeContent:{

@@ -46,19 +46,27 @@ const PoolModal=({isVisible, onClose})=> {
             </ul>
             <div className={checkContent('deposit')}>
                 Deposit content
+                <div className={css(styles.footer)}>
+                    <button className={css(styles.densed)}>
+                            Deposit
+                    </button>
+                   
+                
+                </div>
             </div>
             <div className={checkContent('withdraw')}>
                 withdraw content
+                <div className={css(styles.footer)}>
+                    <button className={css(styles.outlined)}>
+                            Withdraw
+                    </button>
+                    <button className={css(styles.densed)}>
+                            Redeem all
+                    </button>
+                
+                </div>
             </div>
-            <div className={css(styles.footer)}>
-                 <button className={css(styles.outlined)}>
-                        Withdraw
-                </button>
-                <button className={css(styles.densed)}>
-                        Redeem all
-                </button>
-               
-            </div>
+           
         </Modal>            
     )
 }
@@ -115,7 +123,6 @@ const Styles = () => {
             cursor: 'pointer'
           },
           tabContent:{
-            paddingBottom: '15px',
             display: 'none'
           },
           activeContent:{
