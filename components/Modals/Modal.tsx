@@ -26,9 +26,7 @@ const Modal = ({children, isVisible, onClose, width = "500px" }) => {
 		<div ref={modal} className={css(styles.modal)}>
 
 			<div ref={insideModal} className={css(styles.modalContent)}>
-				<div className={css(styles.modalHeader)}>
-					<span className={css(styles.close)} onClick={onClose}>&times;</span>
-				</div>
+				
 				{children}
 			</div>
 
@@ -65,7 +63,8 @@ const Styles = (width) => {
 			width: width,
 			animationName: [animatetop],
         	animationDuration: '0.4s, 1200ms',
-			color: "#000000"
+			color: "#000000",
+			borderRadius: "10px"
 		  },
 		  modalHeader: {
 			display: "flex",
@@ -75,20 +74,7 @@ const Styles = (width) => {
 			display: "block"
 		  },
 		 
-		  close: {
-			color: "white",
-			background: "#464646",
-			width: "26px",
-			borderRadius: "3px",
-			height: "26px",
-			alignItems: "center",
-			display: "inline-flex",
-			justifyContent: "center",
-			cursor: "pointer",
-			':hover': {
-				background: "#000000"
-			}
-		  }
+		 
 	});
 };
 

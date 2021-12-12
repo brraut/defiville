@@ -1,12 +1,149 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Modal from './Modal'
+import { StyleSheet, css } from "aphrodite";
+
 
 const PoolModal=({isVisible, onClose})=> {
-    return (
+    const styles = Styles();
+
+    const [active, setActive] = useState('deposit');
+
+    const changeActive =(tabName) =>{
+        setActive(tabName)
+    }
+
+    const checkActive =(tabName) =>{
+        return active === tabName ? true: false
+    }
+
+    const checkContent =(tabName)=>{
+        return css(styles.tabContent, checkActive(tabName) ? styles.activeContent: null)
+    }
+
+    const checkTab =(tabName) => {
+        return css(styles.tabItem, checkActive(tabName) ? styles.activeItem : null)
+    }
+    return(
+
         <Modal isVisible={isVisible} onClose={onClose}>
-            Pool Modal
-        </Modal>
+            <div className={css(styles.modalHeader)}>
+                <div className={css(styles.modalTitle)}>
+                    Pool Modal
+                </div>
+                <div className={css(styles.modalClose)}>
+                <div className={css(styles.modalPercent)}>5% APY</div>
+				<span className={css(styles.close)} onClick={onClose}>&times;</span>
+                </div>
+			</div>
+            <ul className={css(styles.tabs)}>
+                <li className={checkTab('deposit')} onClick={()=>changeActive('deposit')}>
+                    Deposit
+                </li>
+              
+                <li className={checkTab('withdraw')} onClick={()=>changeActive('withdraw')}>
+                    Withdraw
+                </li>
+            </ul>
+            <div className={checkContent('deposit')}>
+                Deposit content
+            </div>
+            <div className={checkContent('withdraw')}>
+                withdraw content
+            </div>
+            <div className={css(styles.footer)}>
+                 <button className={css(styles.outlined)}>
+                        Withdraw
+                </button>
+                <button className={css(styles.densed)}>
+                        Redeem all
+                </button>
+               
+            </div>
+        </Modal>            
     )
 }
 
-export default PoolModal
+export default PoolModal;
+
+const Styles = () => {
+	
+	return StyleSheet.create({
+		
+		  modalHeader: {
+			display: "flex",
+			justifyContent: "space-between"
+		  },
+          modalTitle:{
+            fontWeight: 'bold',
+            fontSize: '24px'
+          },
+          modalClose:{
+            display: 'flex',
+            justifyContent: 'flex-end',
+            alignItems: 'center'
+          },
+          modalPercent:{
+            color: "#4AC8D4",
+            fontWeight: "bold",
+            fontSize: "14px",
+            marginRight: "15px"
+          },
+
+          close: {
+			color: "#7E7E7E",
+            fontSize: "34px",
+			cursor: "pointer",
+            lineHeight: '100%',
+            fontWeight: 'bold',
+			':hover': {
+				color: "#565656"
+			}
+		  },
+          tabs:{
+            display: 'flex',
+            justifyContent: 'space-between',
+            listStyle: 'none',
+            margin: "25px 0 15px 0"
+          },
+          tabItem:{
+            flex: 1,
+            textTransform: 'uppercase',
+            fontSize: '14px',
+            color: '#B6B6B6',
+            textAlign: 'center',
+            fontWeight: 'bold',
+            cursor: 'pointer'
+          },
+          tabContent:{
+            paddingBottom: '15px',
+            display: 'none'
+          },
+          activeContent:{
+            display: 'block'
+          },
+          activeItem:{
+            color: "#4AC8D4",
+            borderBottom: "2px solid #4AC8D4"
+          },
+          footer:{
+              display: 'flex',
+              justifyContent: 'space-around',
+              columnGap: '15px'
+          },
+          densed:{
+              background: "#4AC8D4",
+              color: "#fff",
+              fontWeight: "bold",
+              borderRadius: "5px",
+              flex: '1'
+          },
+          outlined: {
+              border: "1px solid #4AC8D4",
+              background: '#fff',
+              borderRadius: "5px",
+              fontWeight: "bold",
+              color: "#4AC8D4",
+              flex: '1'
+          }
+	});
+};
