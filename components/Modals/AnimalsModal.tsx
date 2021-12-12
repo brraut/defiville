@@ -1,12 +1,16 @@
-import React from 'react'
-import Modal from './Modal'
+import React from "react";
+import Modal from "./Modal";
 
-const AnimalsModal=({isVisible, onClose})=> {
-    return (
-        <Modal isVisible={isVisible} onClose={onClose}>
-            Animal Modal
-        </Modal>
-    )
-}
+type AnimalProps = {
+  isVisible: boolean;
+  onClose: () => void;
+};
+const AnimalsModal = ({ isVisible, onClose }: AnimalProps) => {
+  return (
+    <Modal isVisible={isVisible} onClose={onClose}>
+      <>Animal Modal</>
+    </Modal>
+  );
+};
 
-export default AnimalsModal
+export default AnimalsModal;
