@@ -45,7 +45,10 @@ const PoolModal=({isVisible, onClose})=> {
                 </li>
             </ul>
             <div className={checkContent('deposit')}>
-                Deposit content
+                <div className={css(styles.title)}>
+                    Available: 0 ISLA
+                </div>
+                <input type="text" className={css(styles.input)} />
                 <div className={css(styles.footer)}>
                     <button className={css(styles.densed)}>
                             Deposit
@@ -55,7 +58,19 @@ const PoolModal=({isVisible, onClose})=> {
                 </div>
             </div>
             <div className={checkContent('withdraw')}>
-                withdraw content
+                <div className={css(styles.title)}>
+                        Deposited: 100 ISLA
+                </div>
+                <input type="text" className={css(styles.input)} />
+                <div className={css(styles.title)}>
+                        Redeemable assets:
+                </div>
+                <div className={css(styles.subTitle)}>
+                    BUSDC: amount
+                </div>
+                <div className={css(styles.subTitle)}>
+                    ENS: amount
+                </div>
                 <div className={css(styles.footer)}>
                     <button className={css(styles.outlined)}>
                             Withdraw
@@ -96,7 +111,24 @@ const Styles = () => {
             fontSize: "14px",
             marginRight: "15px"
           },
-
+          title:{
+            fontWeight: 'bold',
+            color: "#000",
+          },
+          subTitle:{
+            color: 'gray',
+            fontSize: '14px'
+          },
+          input:{
+            background: "#F4F4F4",
+            border: "none",
+            width: "100%",
+            // lineHeight: "36px",
+            borderRadius: "5px",
+            marginTop: '8px',
+            marginBottom: '8px',
+            padding: '8px 16px'
+          },
           close: {
 			color: "#7E7E7E",
             fontSize: "34px",
@@ -123,8 +155,10 @@ const Styles = () => {
             cursor: 'pointer'
           },
           tabContent:{
-            display: 'none'
+            display: 'none',
+           
           },
+
           activeContent:{
             display: 'block'
           },
@@ -135,7 +169,8 @@ const Styles = () => {
           footer:{
               display: 'flex',
               justifyContent: 'space-around',
-              columnGap: '15px'
+              columnGap: '15px',
+              marginTop: '30px'
           },
           densed:{
               background: "#4AC8D4",
