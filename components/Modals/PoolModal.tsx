@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "./Modal";
 import { StyleSheet, css } from "aphrodite";
+import { useWeb3Context } from "../../hooks";
 
 type PoolProps = {
   isVisible: boolean;
@@ -8,7 +9,8 @@ type PoolProps = {
 };
 const PoolModal = ({ isVisible, onClose }: PoolProps) => {
   const styles = Styles();
-
+  const { address, islaGauge } = useWeb3Context();
+  const [islaBalance, setIslabalance] = useState(null);
   const [active, setActive] = useState("deposit");
 
   const changeActive = (tabName: string) => {
@@ -25,6 +27,28 @@ const PoolModal = ({ isVisible, onClose }: PoolProps) => {
       checkActive(tabName) ? styles.activeContent : null
     );
   };
+
+  const loadCurrentMessage = async () => {
+    console.log(islaGauge.methods, "methods");
+    const message = await islaGauge.methods.totalSupply().call();
+    return message;
+  };
+
+  useEffect(() => {
+    if (islaGauge && islaGauge.methods) {
+      // islaGauge.methods
+      //   .owner()
+      //   .send({ from: address, value: 0 })
+      //   .then((res) => console.log(res));
+      // setIslabalance(balanceOf);
+      const fetchMessage = async () => {
+        const message = await loadCurrentMessage();
+        console.log(message);
+        // setMessage(message);
+      };
+      fetchMessage();
+    }
+  }, [islaGauge, address]);
 
   const checkTab = (tabName: string) => {
     return css(styles.tabItem, checkActive(tabName) ? styles.activeItem : null);
