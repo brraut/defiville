@@ -7,7 +7,7 @@ type PoolProps = {
   isVisible: boolean;
   onClose: () => void;
 };
-const PoolModal = ({ isVisible, onClose }: PoolProps) => {
+const BanyModal = ({ isVisible, onClose }: PoolProps) => {
   const styles = Styles();
   const { address, islaGauge } = useWeb3Context();
   const [islaBalance, setIslabalance] = useState(null);
@@ -56,9 +56,9 @@ const PoolModal = ({ isVisible, onClose }: PoolProps) => {
   return (
     <Modal isVisible={isVisible} onClose={onClose}>
       <div className={css(styles.modalHeader)}>
-        <div className={css(styles.modalTitle)}>Pool Modal</div>
+        <div className={css(styles.modalTitle)}>Treasury TBA</div>
         <div className={css(styles.modalClose)}>
-          <div className={css(styles.modalPercent)}>5% APY</div>
+          {/* <div className={css(styles.modalPercent)}>5% APY</div> */}
           <span className={css(styles.close)} onClick={onClose}>
             &times;
           </span>
@@ -78,30 +78,58 @@ const PoolModal = ({ isVisible, onClose }: PoolProps) => {
         >
           Withdraw
         </li>
+        <li
+          className={checkTab("borrow")}
+          onClick={() => changeActive("borrow")}
+        >
+          Borrow
+        </li>
+        <li
+          className={checkTab("repay")}
+          onClick={() => changeActive("repay")}
+        >
+          Repay
+        </li>
       </ul>
       <div className={checkContent("deposit")}>
-        <div className={css(styles.title)}>Available: 0 ISLA</div>
+        <div className={css(styles.title)}>Available: 0 BANY</div>
         <input type="text" className={css(styles.input)} />
         <div className={css(styles.footer)}>
           <button className={css(styles.densed)}>Deposit</button>
         </div>
       </div>
       <div className={checkContent("withdraw")}>
-        <div className={css(styles.title)}>Deposited: 100 ISLA</div>
+        <div className={css(styles.title)}>Deposited: 100 BANY</div>
         <input type="text" className={css(styles.input)} />
-        <div className={css(styles.title)}>Redeemable assets:</div>
-        <div className={css(styles.subTitle)}>BUSDC: amount</div>
-        <div className={css(styles.subTitle)}>ENS: amount</div>
+        <div className={css(styles.title)}>Withdraw Allowed Assets:</div>
+        <div className={css(styles.subTitle)}>BANY: amount</div>
+        <div className={css(styles.subTitle)}>Repay Amount: amount</div>
         <div className={css(styles.footer)}>
-          <button className={css(styles.outlined)}>Withdraw</button>
-          <button className={css(styles.densed)}>Redeem all</button>
+          {/* <button className={css(styles.outlined)}>Withdraw</button> */}
+          <button className={css(styles.densed)}>Withdraw BANY</button>
+        </div>
+      </div>
+      <div className={checkContent("borrow")}>
+        <div className={css(styles.title)}>Available: 0 BANY</div>
+        <input type="text" className={css(styles.input)} />
+        <div className={css(styles.subTitle)}>Borrowed Any: 10 amount</div>
+        <div className={css(styles.footer)}>
+          <button className={css(styles.densed)}>Borrow</button>
+        </div>
+      </div>
+      <div className={checkContent("repay")}>
+        <div className={css(styles.title)}>Available: 0 USDT</div>
+        <input type="text" className={css(styles.input)} />
+        <div className={css(styles.subTitle)}>Borrowed Amount: 10 USDT</div>
+        <div className={css(styles.footer)}>
+          <button className={css(styles.densed)}>Repay</button>
         </div>
       </div>
     </Modal>
   );
 };
 
-export default PoolModal;
+export default BanyModal;
 
 const Styles = () => {
   return StyleSheet.create({

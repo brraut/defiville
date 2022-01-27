@@ -7,9 +7,9 @@ type PoolProps = {
   isVisible: boolean;
   onClose: () => void;
 };
-const PoolModal = ({ isVisible, onClose }: PoolProps) => {
+const MintModal = ({ isVisible, onClose }: PoolProps) => {
   const styles = Styles();
-  const { address, islaGauge } = useWeb3Context();
+  const { address, usdc, usdt } = useWeb3Context();
   const [islaBalance, setIslabalance] = useState(null);
   const [active, setActive] = useState("deposit");
 
@@ -21,34 +21,34 @@ const PoolModal = ({ isVisible, onClose }: PoolProps) => {
     return active === tabName ? true : false;
   };
 
-  const checkContent = (tabName: string) => {
-    return css(
-      styles.tabContent,
-      checkActive(tabName) ? styles.activeContent : null
-    );
-  };
+  // const checkContent = (tabName: string) => {
+  //   return css(
+  //     styles.tabContent,
+  //     checkActive(tabName) ? styles.activeContent : null
+  //   );
+  // };
 
   const loadCurrentMessage = async () => {
-    console.log(islaGauge.methods, "methods");
-    const message = await islaGauge.methods.owner().call();
+    const message = await usdt.methods.balanceOf(address).call();
     return message;
   };
 
   useEffect(() => {
-    if (islaGauge && islaGauge.methods) {
+    if (usdt && usdt.methods) {
       // islaGauge.methods
       //   .owner()
       //   .send({ from: address, value: 0 })
       //   .then((res) => console.log(res));
       // setIslabalance(balanceOf);
       const fetchMessage = async () => {
-        const message = await loadCurrentMessage();
-        console.log(message);
+        let message = await loadCurrentMessage();
+        message = message / (10 ** 6)
+        console.log(message, "nasdnajsnd");
         // setMessage(message);
       };
       fetchMessage();
     }
-  }, [islaGauge, address]);
+  }, [usdt, address]);
 
   const checkTab = (tabName: string) => {
     return css(styles.tabItem, checkActive(tabName) ? styles.activeItem : null);
@@ -56,52 +56,26 @@ const PoolModal = ({ isVisible, onClose }: PoolProps) => {
   return (
     <Modal isVisible={isVisible} onClose={onClose}>
       <div className={css(styles.modalHeader)}>
-        <div className={css(styles.modalTitle)}>Pool Modal</div>
+        <div className={css(styles.modalTitle)}>Mint Modal</div>
         <div className={css(styles.modalClose)}>
-          <div className={css(styles.modalPercent)}>5% APY</div>
+          {/* <div className={css(styles.modalPercent)}>5% APY</div> */}
           <span className={css(styles.close)} onClick={onClose}>
             &times;
           </span>
         </div>
       </div>
-      <ul className={css(styles.tabs)}>
-        <li
-          className={checkTab("deposit")}
-          onClick={() => changeActive("deposit")}
-        >
-          Deposit
-        </li>
-
-        <li
-          className={checkTab("withdraw")}
-          onClick={() => changeActive("withdraw")}
-        >
-          Withdraw
-        </li>
-      </ul>
-      <div className={checkContent("deposit")}>
-        <div className={css(styles.title)}>Available: 0 ISLA</div>
+      <div>
+        <div className={css(styles.title)}>Available: 0 USDC</div>
         <input type="text" className={css(styles.input)} />
         <div className={css(styles.footer)}>
-          <button className={css(styles.densed)}>Deposit</button>
-        </div>
-      </div>
-      <div className={checkContent("withdraw")}>
-        <div className={css(styles.title)}>Deposited: 100 ISLA</div>
-        <input type="text" className={css(styles.input)} />
-        <div className={css(styles.title)}>Redeemable assets:</div>
-        <div className={css(styles.subTitle)}>BUSDC: amount</div>
-        <div className={css(styles.subTitle)}>ENS: amount</div>
-        <div className={css(styles.footer)}>
-          <button className={css(styles.outlined)}>Withdraw</button>
-          <button className={css(styles.densed)}>Redeem all</button>
+          <button className={css(styles.densed)}>Mint BANY</button>
         </div>
       </div>
     </Modal>
   );
 };
 
-export default PoolModal;
+export default MintModal;
 
 const Styles = () => {
   return StyleSheet.create({

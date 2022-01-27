@@ -16,6 +16,8 @@ import WalletConnectProvider from "@walletconnect/web3-provider";
 import { switchNetwork } from "../../helpers/switchNetwork";
 import Web3 from "web3";
 import abi from "../../contracts/IslaGauge.js";
+import usdcabi from "../../contracts/USDC.js";
+import usdtabi from "../../contracts/USDT.js";
 
 type onChainProvider = {
   connect: () => Promise<Web3Provider>;
@@ -68,7 +70,12 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({
       new StaticJsonRpcProvider(uri)
     );
     const islaGaugeNetwrok = "0x2DE8a306732A5a8E0FbF1b2B8AA32FC9Bc958c2e";
+    const usdcNetwork = "0x2791bca1f2de4661ed88a30c99a7a9449aa84174";
+    // const daiNetwork = "0xc2132d05d31c914a87c6611c10748aeb04b58e8f";
+    const usdtNetwork = "0xc2132d05d31c914a87c6611c10748aeb04b58e8f";
     const [islaGauge, setIslaGauge] = useState(null);
+    const [usdc, setUsdc] = useState(null);
+    const [usdt, setUsdt] = useState(null);
 
     const [web3Modal] = useState<Web3Modal>(
       new Web3Modal({
@@ -155,7 +162,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({
       return false;
     };
 
-    const disconnect = useCallback(async () => {
+    const disconnect = useCallback(async ()  => {
       web3Modal.clearCachedProvider();
       setConnected(false);
 
@@ -166,10 +173,14 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({
 
     useEffect(() => {
       if (connected) {
-        const web3 = new Web3(provider);
+        const web3 = new Web3(Web3.givenProvider);
         const islaContract = new web3.eth.Contract(abi, islaGaugeNetwrok);
+        const usdcContract = new web3.eth.Contract(usdcabi, usdcNetwork);
+        const usdtContract = new web3.eth.Contract(usdtabi, usdtNetwork);
         setIslaGauge(islaContract);
-        console.log(islaContract.methods.balanceOf);
+        setUsdc(usdcContract);
+        setUsdt(usdtContract);
+        // console.log(islaContract.methods.balanceOf());
       }
     }, [connected]);
 
@@ -186,6 +197,8 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({
         providerChainID,
         checkWrongNetwork,
         islaGauge,
+        usdc,
+        usdt,
       }),
       [
         connect,
@@ -198,6 +211,8 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({
         web3Modal,
         providerChainID,
         islaGauge,
+        usdc,
+        usdt
       ]
     );
     //@ts-ignore
