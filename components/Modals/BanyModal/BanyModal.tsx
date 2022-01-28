@@ -106,7 +106,10 @@ const BanyModal = ({ isVisible, onClose }: PoolProps) => {
       </ul>
       <div className={checkContent("deposit")}>
         <div className={css(styles.title)}>Available: 0 BANY</div>
-        <input type="text" className={css(styles.input)} placeholder="0.00"/>
+        <div className={css(styles.mintFullInnerWrap)}>
+          <input type="text" className={css(styles.input)} placeholder="0.00" />
+          <div className={css(styles.maxFullBtn)}>Max</div>
+        </div>
         <div className={css(styles.footer)}>
           <button className={css(styles.densed)}>Deposit</button>
         </div>
@@ -116,9 +119,9 @@ const BanyModal = ({ isVisible, onClose }: PoolProps) => {
 
       <div className={checkContent("withdraw")}>
         <div className={css(styles.title)}>Deposited: 100 BANY</div>
-        <div className={css(styles.mintInnerWrap)}>
+        <div className={css(styles.mintFullInnerWrap)}>
           <input type="text" className={css(styles.input)} placeholder="0.00" />
-          {/* <div className={css(styles.maxBtn)}>Max</div> */}
+          <div className={css(styles.maxFullBtn)}>Max</div>
         </div>
         <div className={css(styles.title)}>Withdraw Allowed Assets:</div>
         <div className={css(styles.subTitle)}>BANY: amount</div>
@@ -159,7 +162,16 @@ const BanyModal = ({ isVisible, onClose }: PoolProps) => {
                 className={css(styles.tokenDefaultList)}
                 onClick={handleSelectOpen}
               >
-                <span className={css(styles.tokenName)}>Select a Token</span>
+<               span className={css(styles.tokenName)}>Select Token</span>
+                  <svg
+                    width="16"
+                    height="10"
+                    viewBox="0 0 16 10"
+                    fill="#4ac7d4"
+                  ><path
+                  d="M0.97168 1L6.20532 6L11.439 1"
+                  stroke="#AEAEAE"
+                ></path></svg>
               </div>
             )}
           </div>
@@ -200,7 +212,16 @@ const BanyModal = ({ isVisible, onClose }: PoolProps) => {
                 className={css(styles.tokenDefaultList)}
                 onClick={handleSelectOpen}
               >
-                <span className={css(styles.tokenName)}>Select a Token</span>
+                <span className={css(styles.tokenName)}>Select Token</span>
+                  <svg
+                    width="16"
+                    height="10"
+                    viewBox="0 0 16 10"
+                    fill="#4ac7d4"
+                  ><path
+                  d="M0.97168 1L6.20532 6L11.439 1"
+                  stroke="#AEAEAE"
+                ></path></svg>
               </div>
             )}
           </div>

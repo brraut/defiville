@@ -156,6 +156,21 @@ export const Styles = () => {
         marginLeft: "15px",
         cursor: "pointer",
       },
+      mintFullInnerWrap:{
+        position: "relative"
+      },
+      maxFullBtn:{
+        background: "#b9b9b9",
+        cursor: "pointer",
+        padding: "2px 10px",
+        marginLeft: "15px",
+        borderRadius: "3px",
+        position: "absolute",
+        right: "15px",
+        fontSize: "14px",
+        color: "white",
+        top: "15px"
+      }
     });
   };
   

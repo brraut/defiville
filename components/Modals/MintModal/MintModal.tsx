@@ -114,13 +114,26 @@ const MintModal = ({ isVisible, onClose }: PoolProps) => {
                   className={css(styles.tokenDefaultList)}
                   onClick={handleSelectOpen}
                 >
-                  <span className={css(styles.tokenName)}>Select a Token</span>
+                  <span className={css(styles.tokenName)}>Select Token</span>
+                  <svg
+                    width="16"
+                    height="10"
+                    viewBox="0 0 16 10"
+                    fill="#4ac7d4"
+                  ><path
+                  d="M0.97168 1L6.20532 6L11.439 1"
+                  stroke="#AEAEAE"
+                ></path></svg>
+                  
                 </div>
               )}
             </div>
           </div>
-          <div className={css(styles.subTitle)}>Max USDC 2k</div>
-          <div className={css(styles.subTitle)}>Max USDT 3k</div>
+
+          <div> 
+            <div className={css(styles.subTitle)}>BANY Left to Mint: <strong>2000</strong></div>
+            <div className={css(styles.subTitle)}>Max USDT: <strong>3000</strong></div>
+          </div>
 
           <div className={css(styles.footer)}>
             <button className={css(styles.densed)}>Mint BANY</button>
