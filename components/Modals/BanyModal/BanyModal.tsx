@@ -3,7 +3,6 @@ import Modal from "../Modal";
 import { css } from "aphrodite";
 import { useWeb3Context } from "../../../hooks";
 import { Styles } from "./Styles";
-import { tokens } from "../../../helpers/tokens";
 import SelectToken from "../SelectToken/SelectToken";
 
 type PoolProps = {
@@ -16,7 +15,11 @@ const BanyModal = ({ isVisible, onClose }: PoolProps) => {
   const [islaBalance, setIslabalance] = useState(null);
   const [active, setActive] = useState("deposit");
   const [openSelect, setOpenSelect] = useState(false);
-  const [selectedToken, setSelectedToken] = useState(tokens[0]);
+  const [selectedToken, setSelectedToken] = useState({
+    id: 0,
+    name: "",
+    image: "",
+  });
 
   const handleSelectOpen = () => {
     setOpenSelect(true);
@@ -128,7 +131,7 @@ const BanyModal = ({ isVisible, onClose }: PoolProps) => {
       <div className={checkContent("borrow")}>
         <div className={css(styles.mintInputWrapper)}>
           <div className={css(styles.mintTitle)}>
-            <span>Available: 0 USDC</span>{" "}
+            <span>Available: 0 {selectedToken?.name || ""}</span>
             <span className={css(styles.from)}>From</span>
           </div>
           <div className={css(styles.mintInnerWrap)}>
@@ -138,15 +141,27 @@ const BanyModal = ({ isVisible, onClose }: PoolProps) => {
               placeholder="0.00"
             />
             <div className={css(styles.maxBtn)}>Max</div>
-            <div className={css(styles.tokenList)} onClick={handleSelectOpen}>
-              <img src={selectedToken?.image} alt="" height="25" width="25" />
-              <span className={css(styles.tokenName)}>
-                {selectedToken?.name}
-              </span>
-              <svg width="16" height="10" viewBox="0 0 16 10" fill="#4ac7d4">
-                <path d="M0.97168 1L6.20532 6L11.439 1" stroke="#AEAEAE"></path>
-              </svg>
-            </div>
+            {selectedToken?.name ? (
+              <div className={css(styles.tokenList)} onClick={handleSelectOpen}>
+                <img src={selectedToken?.image} alt="" height="25" width="25" />
+                <span className={css(styles.tokenName)}>
+                  {selectedToken?.name}
+                </span>
+                <svg width="16" height="10" viewBox="0 0 16 10" fill="#4ac7d4">
+                  <path
+                    d="M0.97168 1L6.20532 6L11.439 1"
+                    stroke="#AEAEAE"
+                  ></path>
+                </svg>
+              </div>
+            ) : (
+              <div
+                className={css(styles.tokenDefaultList)}
+                onClick={handleSelectOpen}
+              >
+                <span className={css(styles.tokenName)}>Select a Token</span>
+              </div>
+            )}
           </div>
         </div>
         <div className={css(styles.subTitle)}>Borrowed Any: 10 amount</div>
@@ -157,7 +172,7 @@ const BanyModal = ({ isVisible, onClose }: PoolProps) => {
       <div className={checkContent("repay")}>
         <div className={css(styles.mintInputWrapper)}>
           <div className={css(styles.mintTitle)}>
-            <span>Available: 0 USDC</span>{" "}
+            <span>Available: 0 {selectedToken?.name || ""}</span>
             <span className={css(styles.from)}>From</span>
           </div>
           <div className={css(styles.mintInnerWrap)}>
@@ -167,15 +182,27 @@ const BanyModal = ({ isVisible, onClose }: PoolProps) => {
               placeholder="0.00"
             />
             <div className={css(styles.maxBtn)}>Max</div>
-            <div className={css(styles.tokenList)} onClick={handleSelectOpen}>
-              <img src={selectedToken?.image} alt="" height="25" width="25" />
-              <span className={css(styles.tokenName)}>
-                {selectedToken?.name}
-              </span>
-              <svg width="16" height="10" viewBox="0 0 16 10" fill="#4ac7d4">
-                <path d="M0.97168 1L6.20532 6L11.439 1" stroke="#AEAEAE"></path>
-              </svg>
-            </div>
+            {selectedToken?.name ? (
+              <div className={css(styles.tokenList)} onClick={handleSelectOpen}>
+                <img src={selectedToken?.image} alt="" height="25" width="25" />
+                <span className={css(styles.tokenName)}>
+                  {selectedToken?.name}
+                </span>
+                <svg width="16" height="10" viewBox="0 0 16 10" fill="#4ac7d4">
+                  <path
+                    d="M0.97168 1L6.20532 6L11.439 1"
+                    stroke="#AEAEAE"
+                  ></path>
+                </svg>
+              </div>
+            ) : (
+              <div
+                className={css(styles.tokenDefaultList)}
+                onClick={handleSelectOpen}
+              >
+                <span className={css(styles.tokenName)}>Select a Token</span>
+              </div>
+            )}
           </div>
         </div>
         <div className={css(styles.subTitle)}>Borrowed Amount: 10 USDT</div>
