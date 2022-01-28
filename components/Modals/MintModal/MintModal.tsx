@@ -73,7 +73,7 @@ const MintModal = ({ isVisible, onClose }: PoolProps) => {
         <div className={css(styles.modalHeader)}>
           <div className={css(styles.modalTitle)}>Mint Modal</div>
           <div className={css(styles.modalClose)}>
-            {/* <div className={css(styles.modalPercent)}>5% APY</div> */}
+            {/* <div className={css(styles.modalPercent)}>TBA: 2</div> */}
             <span className={css(styles.close)} onClick={onClose}>
               &times;
             </span>

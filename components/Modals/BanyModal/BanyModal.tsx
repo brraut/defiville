@@ -103,14 +103,20 @@ const BanyModal = ({ isVisible, onClose }: PoolProps) => {
       </ul>
       <div className={checkContent("deposit")}>
         <div className={css(styles.title)}>Available: 0 BANY</div>
-        <input type="text" className={css(styles.input)} />
+        <input type="text" className={css(styles.input)} placeholder="0.00"/>
         <div className={css(styles.footer)}>
           <button className={css(styles.densed)}>Deposit</button>
         </div>
       </div>
+
+      {/* Withdraw */}
+
       <div className={checkContent("withdraw")}>
         <div className={css(styles.title)}>Deposited: 100 BANY</div>
-        <input type="text" className={css(styles.input)} />
+        <div className={css(styles.mintInnerWrap)}>
+          <input type="text" className={css(styles.input)} placeholder="0.00" />
+          {/* <div className={css(styles.maxBtn)}>Max</div> */}
+        </div>
         <div className={css(styles.title)}>Withdraw Allowed Assets:</div>
         <div className={css(styles.subTitle)}>BANY: amount</div>
         <div className={css(styles.subTitle)}>Repay Amount: amount</div>
