@@ -19,7 +19,10 @@ export const Styles = () => {
     title: {
       color: "#000",
     },
-
+    subTitle: {
+      color: "gray",
+      fontSize: "14px",
+    },
     input: {
       background: "#F4F4F4",
       border: "none",
@@ -68,6 +71,7 @@ export const Styles = () => {
       padding: "10px 15px",
       borderRadius: "6px",
       marginTop: "30px",
+      marginBottom: "10px",
     },
     mintTitle: {
       fontSize: "14px",
@@ -109,6 +113,17 @@ export const Styles = () => {
       marginLeft: "10px",
       marginRight: "10px",
       fontWeight: "bold",
+    },
+    tokenDefaultList: {
+      padding: "11px 10px",
+      minWidth: "160px",
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      background: "#f4f4f4",
+      borderRadius: "30px",
+      marginLeft: "15px",
+      cursor: "pointer",
     },
   });
 };

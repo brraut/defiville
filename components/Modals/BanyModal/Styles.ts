@@ -145,6 +145,17 @@ export const Styles = () => {
         marginRight: "10px",
         fontWeight: "bold",
       },
+      tokenDefaultList: {
+        padding: "11px 10px",
+        minWidth: "160px",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        background: "#f4f4f4",
+        borderRadius: "30px",
+        marginLeft: "15px",
+        cursor: "pointer",
+      },
     });
   };
   
